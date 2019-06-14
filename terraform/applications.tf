@@ -79,8 +79,8 @@ resource "random_string" "application_server_password" {
 resource "azuread_application" "client" {
   name       = "k8s_client"
   reply_urls = ["http://k8s_client"]
-  # This is necessary that the client app is of type "native"
-  # Only allowed since the 0.4.0 version of the azuread Terraform provider
+  # This is necessary that the client app is of type "native".
+  # Only allowed since the 0.4.0 version of the azuread Terraform provider.
   type = "native"
 
   required_resource_access {
@@ -95,7 +95,7 @@ resource "azuread_application" "client" {
     }
   }
 
-  # this is where we allow the client app to do requets to the server app
+  # This is where we allow the client app to do requets to the server app.
   required_resource_access {
     # AKS ad application server
     resource_app_id = azuread_application.server.application_id
