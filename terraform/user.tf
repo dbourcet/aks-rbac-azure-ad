@@ -1,6 +1,4 @@
 resource "kubernetes_cluster_role_binding" "admins" {
-  count = length(var.admins)
-
   metadata {
     name = "cluster-admins"
   }
@@ -11,8 +9,11 @@ resource "kubernetes_cluster_role_binding" "admins" {
     api_group = "rbac.authorization.k8s.io"
   }
 
-  subject {
-    kind = "User"
-    name = element(var.admins, count.index)
+  dynamic "subject" {      
+    for_each = var.admins  
+    content {              
+      kind = "User"
+      name = subject.value
+    }
   }
 }

@@ -53,7 +53,9 @@ $ terraform init
 Create **JUST ONLY** the two client and server applications/passwords/service principals for this cluster. You only need to target the password resources as the
 dependencies will naturally create the applications and the service principals:
 ```bash
-$ terraform apply -target azuread_service_principal_password.server -target azuread_service_principal_password.client
+$ terraform apply \
+    -target azuread_service_principal_password.server \
+    -target azuread_service_principal_password.client
 [...]
 Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 ```
